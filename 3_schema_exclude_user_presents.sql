@@ -90,6 +90,8 @@ CREATE TABLE `login_bonus_reward_masters` (
   `amount` bigint NOT NULL comment '個数',
   `created_at` bigint NOT NULL,
   PRIMARY KEY (`id`)
+  FOREIGN KEY fk_login_bonus_masters (`login_bonus_id`) REFERENCES login_bonus_masters (`id`);
+  FOREIGN KEY fk_item_masters (`item_id`) REFERENCES item_masters(`id`);
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 CREATE TABLE `user_login_bonuses` (
@@ -102,6 +104,7 @@ CREATE TABLE `user_login_bonuses` (
   `updated_at`bigint NOT NULL,
   `deleted_at` bigint default NULL,
   PRIMARY KEY (`id`),
+  FOREIGN KEY fk_login_bonus_masters (`login_bonus_id`) REFERENCES login_bonus_masters (`id`);
   UNIQUE uniq_user_id (`user_id`, `login_bonus_id`, `deleted_at`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
